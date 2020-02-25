@@ -18,11 +18,14 @@
 <div class="navbar-end">
   <div class="navbar-item">
     <div class="buttons">
-      <a class="button is-primary" href="index.php">
+      <a class="button is-primary" href="home.php">
         <strong>History</strong>
       </a>
       <a class="button is-light" href="deductions.php">
         <strong>Deductions</strong>
+      </a>
+      <a class="button is-light" href="grace.php">
+        <strong>Grace</strong>
       </a>
       <a class="button is-light" href="logout.php">
         <i class="fas fa-power-off"></i>&nbsp;Logout

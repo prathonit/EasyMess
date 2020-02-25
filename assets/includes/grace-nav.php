@@ -21,10 +21,10 @@
       <a class="button is-light" href="home.php">
         <strong>History</strong>
       </a>
-      <a class="button is-primary" href="deductions.php">
+      <a class="button is-light" href="deductions.php">
         <strong>Deductions</strong>
       </a>
-      <a class="button is-light" href="grace.php">
+      <a class="button is-primary" href="grace.php">
         <strong>Grace</strong>
       </a>
       <a class="button is-light" href="logout.php">
