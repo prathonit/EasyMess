@@ -1,3 +1,4 @@
+<!-- Written on 25-02-2020 by Prathmesh Srivastava https://github.com/prathonit -->
 <?php
   include 'config/dependencies.php';
 ?>
@@ -48,42 +49,45 @@
       <div class="container">
         <section class="section">
           <div class="container">
-            <fieldset>
+            <form class="" action="authenticate.php" method="post">
+              <fieldset>
 
-            <div class="field has-addons">
+              <div class="field has-addons">
 
 
-              <div class="control has-icons-left">
-                <span class="icon is-small is-left">
-                  <i class="fas fa-envelope"></i>
-                </span>
-                <input class="input" type="email" name="email" value="">
+                <div class="control has-icons-left">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                  <input class="input" type="text" name="username" value="" required>
+
+                </div>
+                <div class="control">
+                  <button class="button is-static">@hyderabad.bits-pilani.ac.in</button>
+                </div>
 
               </div>
-              <div class="control">
-                <button class="button is-static">@hyderabad.bits-pilani.ac.in</button>
-              </div>
+              <div class="field has-addons" >
 
+
+                <div class="control has-icons-left">
+                  <span class="icon is-small is-left">
+                      <i class="fas fa-key"></i>
+                  </span>
+                  <input class="input" type="password" name="password" value="" required>
+                </div>
+
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input type="submit" value="login" class="button is-primary">
+                </div>
             </div>
-            <div class="field has-addons" >
-
-
-              <div class="control has-icons-left">
-                <span class="icon is-small is-left">
-                    <i class="fas fa-key"></i>
-                </span>
-                <input class="input" type="password" name="password" value="">
+          </fieldset>
+            </form>
               </div>
-
-            </div>
-            <div class="field">
-              <div class="control">
-                <input type="submit" value="login" class="button is-primary">
-              </div>
-          </div>
-        </fieldset>
         </section>
-      </div>
+
     </div>
   </div>
 </section>
@@ -99,9 +103,3 @@
 </section>
   </body>
 </html>
-<!-- I don't think I will ever write the comments manually from now on  -->
-<?php
-$db = new DB;
-$pass = $db->selectUserFromDb("prathonits");
-echo $pass;
-?>

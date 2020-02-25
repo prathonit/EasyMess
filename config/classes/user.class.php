@@ -1,4 +1,24 @@
+<!-- Written on 25-02-2020 by Prathmesh Srivastava https://github.com/prathonit -->
 <?php
-class User(username){
-  
+class User{
+  public $username;
+  function __construct($username,$password){
+    $this->username = $username;
+    $this->password = $password;
+  }
+  public function authenticateUser(){
+    $database = new DB;
+    $userdata = $database->selectUserFromDb($this->username);
+    if (checkPassword($this->username, $userdata['password'])){
+      return True;
+    }
+    else{
+      return False;
+    }
+  }
+  public function loginUser(){
+    session_start();
+    $_SESSION['username'] = $this->username;
+  }
 }
+?>
