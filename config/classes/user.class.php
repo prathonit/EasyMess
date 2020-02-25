@@ -9,12 +9,7 @@ class User{
   public function authenticateUser(){
     $database = new DB;
     $userdata = $database->selectUserFromDb($this->username);
-    if (checkPassword($this->username, $userdata['password'])){
-      return True;
-    }
-    else{
-      return False;
-    }
+    return checkPassword($this->password, $userdata['password']);
   }
   public function loginUser(){
     session_start();
