@@ -1,8 +1,8 @@
 <?php
 include 'config/dependencies.php';
-$username = sanitize_input($_POST['username']);
+$uid = sanitize_input($_POST['uid']);
 $password = sanitize_input($_POST['password']);
-$user = new User($username, $password);
+$user = new User($uid, $password);
 if ($user->authenticateUser()){
 $user->loginUser();
 header("Location:home.php");

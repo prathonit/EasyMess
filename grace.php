@@ -1,9 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION['username'])){
+if (!isset($_SESSION['uid'])){
 header("Location:index.php");
 }
 include 'config/dependencies.php';
+$month = date('m');
+$database = new DB;
+$noOfOnlineGracesLeft = $database->getNoOfOnlineGracesLeft($_SESSION['uid'], $month);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -19,18 +22,25 @@ include 'assets/includes/grace-nav.php';
 <h1 class="title">Mess Grace</h1>
 <center>
 <div class="box" style="padding:40px;">
-<form class="" action="index.html" method="post">
+<form class="" action="grace-apply.php" method="post">
  <fieldset>
    <div class="fields">
      <label for="">Select a date</label>
      <div class="control" style="width:50%;">
-       <input type="date" name="grace-date" class="input">
+       <input type="date" name="grace-date" class="input" required>
      </div>
    </div><br>
    <div class="field">
      <div class="control">
        <center>
-       <button class="button is-static">You have n graces available for this month</button>
+         <?php
+         if ($noOfOnlineGracesLeft<=0){
+           echo "<button class='button is-danger'>You are not eligible for more online graces</button>";
+         }else{
+           echo "<button class='button is-static'>You have ".$noOfOnlineGracesLeft ." online graces available for this month</button>";
+         }
+          ?>
+
       </center>
      </div>
    </div>
@@ -56,9 +66,17 @@ include 'assets/includes/grace-nav.php';
     <div class="table-container">
       <table class="table is-striped" style="width:90%;">
         <thead>
-          <th>Month</th>
+          <th>Grace Id</th>
           <th>Date</th>
+          <th>Request Date</th>
         </thead>
+        <tbody>
+          <?php
+            $database = new DB;
+            $gracesAll = $database->getAllGraces($_SESSION['uid']);
+            echo $gracesAll;
+          ?>
+        </tbody>
       </table>
     </div>
   </div>

@@ -6,7 +6,7 @@
   </head>
   <body>
     <form class="" action="signup.php" method="post">
-      <input type="text" name="username">
+      <input type="text" name="uid">
       <br>
       <input type="password" name="password">
       <input type="submit" value="submit">
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
 $database = new DB;
 $handle = $database->connectToDb();
 $password_hash = hashPassword($_POST['password']);
-$query = "INSERT INTO members (username, password) VALUES ('{$_POST['username']}','{$password_hash}')";
-$handle->query($query); 
+$query = "INSERT INTO members (uid, password) VALUES ('{$_POST['uid']}','{$password_hash}')";
+$handle->query($query);
 }
  ?>

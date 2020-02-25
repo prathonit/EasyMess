@@ -24,7 +24,7 @@
                   <span class="icon is-small is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
-                  <input class="input" type="text" name="username" value="" required>
+                  <input class="input" type="text" name="uid" value="" required>
 
                 </div>
                 <div class="control">

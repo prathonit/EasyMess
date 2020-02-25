@@ -3,5 +3,6 @@
     include 'config/classes/user.class.php';
     include 'config/methods/sanitize.method.php';
     include 'config/methods/hash.method.php';
-    
+    include 'config/timezone.php';
+
 ?>

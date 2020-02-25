@@ -17,23 +17,16 @@
       <div class="container">
         <section class="section">
           <div class="container">
-            <form class="" action="authenticate.php" method="post">
+            <form class="" action="mess-authenticate.php" method="post">
               <fieldset>
-
               <div class="field has-addons">
-
-
                 <div class="control has-icons-left">
                   <span class="icon is-small is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
-                  <input class="input" type="text" name="username" value="" required>
+                  <input class="input" type="text" name="uid" value="" required>
 
                 </div>
-                <div class="control">
-                  <button class="button is-static">@hyderabad.bits-pilani.ac.in</button>
-                </div>
-
               </div>
               <div class="field has-addons" >
 
