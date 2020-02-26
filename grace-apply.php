@@ -16,5 +16,4 @@ if ($grace->checkGraceEligibility($_SESSION['uid'], $month, $day, $request_date)
 else{
   die("No more graces are allowed");
 }
-
 ?>

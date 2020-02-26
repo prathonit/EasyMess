@@ -4,6 +4,7 @@
     include 'config/methods/sanitize.method.php';
     include 'config/methods/hash.method.php';
     include 'config/classes/grace.class.php';
+    include 'config/classes/attendance.class.php';
     include 'config/timezone.php';
 
 ?>

@@ -19,7 +19,7 @@
   <div class="navbar-item">
     <div class="buttons">
       <a class="button is-primary" href="home.php">
-        <strong>History</strong>
+        <strong>Ticket</strong>
       </a>
       <a class="button is-light" href="deductions.php">
         <strong>Deductions</strong>
