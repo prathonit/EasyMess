@@ -5,8 +5,8 @@ header("Location:index.php");
 }
 include 'config/dependencies.php';
 $month = date('m');
-$database = new DB;
-$noOfOnlineGracesLeft = $database->getNoOfOnlineGracesLeft($_SESSION['uid'], $month);
+$grace = new Grace($_SESSION['uid']);
+$noOfOnlineGracesLeft = $grace->getNoOfOnlineGracesLeft($_SESSION['uid'], $month);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -72,9 +72,9 @@ include 'assets/includes/grace-nav.php';
         </thead>
         <tbody>
           <?php
-            $database = new DB;
-            $gracesAll = $database->getAllGraces($_SESSION['uid']);
-            echo $gracesAll;
+          $grace = new Grace($_SESSION['uid']);
+          $graceAll = $grace->getAllGraces();
+          echo $graceAll;
           ?>
         </tbody>
       </table>

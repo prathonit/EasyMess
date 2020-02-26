@@ -9,9 +9,9 @@ $date = sanitize_input($_POST['grace-date']);
 $month = date("m",strtotime($date));
 $day = date("d",strtotime($date));
 $request_date = date("Y-m-d-H-i");
-$database = new DB;
-if ($database->checkGraceEligibility($_SESSION['uid'], $month, $day, $request_date)){
-  $database = $database->addGrace($_SESSION['uid'], $month, $day, $request_date);
+$grace = new Grace($_SESSION['uid']);
+if ($grace->checkGraceEligibility($_SESSION['uid'], $month, $day, $request_date)){
+  $grace->addGrace($_SESSION['uid'], $month, $day, $request_date);
 }
 else{
   die("No more graces are allowed");
