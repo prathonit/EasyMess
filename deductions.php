@@ -40,25 +40,10 @@ include 'config/dependencies.php';
                Daywise mess summary
              </div>
              <div class="message-body">
-               <div class="box">
-                 <div class="columns">
-                   <div class="column is-narrow is-2 has-text-centered">
-                     <div class="box">
-                       12/02
-                     </div>
-                   </div>
-                   <div class="column has-text-centered">
-                     <div class="box">
-                       hi
-                     </div>
-                   </div>
-                   <div class="column">
-                     <div class="box">
-                       
-                     </div>
-                   </div>
-                 </div>
-               </div>
+               <?php
+               $deduction = new Deduction($_SESSION['uid']);
+               $deduction->getMonthlyDeduction();
+               ?>
              </div>
            </article>
          </div>

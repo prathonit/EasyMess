@@ -58,6 +58,14 @@ class Grace {
     }
     return $graceEligibility;
   }
+  public function checkGraceValidity($date, $request_date){
+    $valid = True;
+    $request_date = date("d-m", strtotime($request_date));
+    $grace_date = date("d-m", strtotime("$date"));
+    if ($grace_date <= $request_date){
+      $valid =False;
+    }return $valid;
+  }
 }
 
 ?>

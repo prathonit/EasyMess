@@ -30,23 +30,50 @@ public function getMealRecord($day,$meal){
       $mealRecord = "<div class='column has-text-centered'><div class='box has-background-danger'>" . $meal . "</div></div>";
     }
   }
+  return $mealRecord;
 }
 public function getDayRecord($day){
   $dayRecord = "";
   $database = new DB;
   $handle = $database->connectToDb();
-  if (this->checkIfGraceApplied($day)){
-    
+  if ($this->checkIfGraceApplied($day)){
+    $dayRecord = $dayRecord . "<div class='box'>
+        <div class='columns'>
+          <div class='column is-narrow is-2 has-text-centered'>
+            <div class='box'>" . $day . "-". $this->month."</div></div>";
+            $dayRecord = $dayRecord . "<div class='column has-text-centered'>
+              <div class='box'>
+                Grace taken
+              </div>
+            </div>
+            <div class='column is-narrow is-2 has-text-centered'>
+              <div class='box'>
+                Rs: 0
+              </div>
+            </div>
+          </div>
+        </div>";
   }
   else{
+    $dayRecord = $dayRecord ."<div class='box'><div class='columns'>";
+    $dayRecord = $dayRecord . "<div class='column is-narrow is-2 has-text-centered'>
+      <div class='box'>" . $day . "-". $this->month."</div></div>";
+    $dayRecord = $dayRecord . $this->getMealRecord($day, 'Breakfast');
+    $dayRecord = $dayRecord . $this->getMealRecord($day, 'Lunch');
+    $dayRecord = $dayRecord . $this->getMealRecord($day, 'Snacks');
+    $dayRecord = $dayRecord . $this->getMealRecord($day, 'Dinner');
 
+    $dayRecord = $dayRecord . "<div class='column is-narrow is-2 has-text-centered'>
+      <div class='box'>
+        Rs: 121
+      </div>
+    </div></div></div>";
   }
-
-
+  return $dayRecord;
 }
-public function getMonthlyDeduction($){
-  for ($i = 1 ; $i < date("d")); $i++){
-
+public function getMonthlyDeduction(){
+  for ($i = 1; $i <=26; $i++){
+    echo $this->getDayRecord($i);
   }
 }
 }
