@@ -4,14 +4,12 @@
   <span class="has-text-weight-bold is-size-4">EasyMess</span>
   <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
 </a>
-<div class="container">
-</div>
+
 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
   <span aria-hidden="true"></span>
   <span aria-hidden="true"></span>
   <span aria-hidden="true"></span>
 </a>
-</div>
 </div>
 
 <div id="navbarBasicExample" class="navbar-menu">
@@ -20,11 +18,17 @@
 <div class="navbar-end">
   <div class="navbar-item">
     <div class="buttons">
-      <a class="button is-primary" href="index.php">
-        <strong>Student Login</strong>
+      <a class="button is-primary" href="adminhome.php">
+        <strong>Scanner</strong>
       </a>
-      <a class="button is-light" href="admin.php">
-        Mess Login
+      <a class="button is-light" href="adminaccounts.php">
+        <strong>Deductions</strong>
+      </a>
+      <a class="button is-light" href="admingrace.php">
+        <strong>Grace</strong>
+      </a>
+      <a class="button is-light" href="logout.php">
+        <i class="fas fa-power-off"></i>&nbsp;Logout
       </a>
     </div>
   </div>

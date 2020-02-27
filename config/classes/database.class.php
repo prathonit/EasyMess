@@ -19,6 +19,17 @@
         return "User does not exist";
       }
     }
+    public function selectAdminFromDb($adminuid){
+      $handle = $this->connectToDb();
+      $query = "SELECT * FROM admin WHERE adminuid = '{$adminuid}' LIMIT 1";
+      if ($result = $handle->query($query)){
+        $data = $result->fetch_array(MYSQLI_ASSOC);
+        return $data;
+      }
+      else{
+        return "Admin does not exist";
+      }
+    }
   }
 
 ?>

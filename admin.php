@@ -17,14 +17,14 @@
       <div class="container">
         <section class="section">
           <div class="container">
-            <form class="" action="mess-authenticate.php" method="post">
+            <form class="" action="adminauthenticate.php" method="post">
               <fieldset>
               <div class="field has-addons">
                 <div class="control has-icons-left">
                   <span class="icon is-small is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
-                  <input class="input" type="text" name="uid" value="" required>
+                  <input class="input" type="text" name="adminuid" value="" required>
 
                 </div>
               </div>
@@ -35,7 +35,7 @@
                   <span class="icon is-small is-left">
                       <i class="fas fa-key"></i>
                   </span>
-                  <input class="input" type="password" name="password" value="" required>
+                  <input class="input" type="password" name="adminpassword" value="" required>
                 </div>
 
               </div>

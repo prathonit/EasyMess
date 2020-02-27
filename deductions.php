@@ -24,13 +24,16 @@ include 'config/dependencies.php';
                Brief Summary
              </div>
              <div class="message-body">
-               Total amount deducted:
+               Total amount deducted: Rs:  <?php
+               $deduction = new Deduction($_SESSION['uid']);
+               echo $deduction->getTotalDeductionForUser()['deduction'];
+               ?>
                <br>
-               Total number of graces taken:
+               Total number of graces taken: <?php echo $deduction->getTotalDeductionForUser()['graces'];?>
                <br>
-               Number of days eaten in mess:
+               Number of days eaten in mess: <?php echo date("t") - $deduction->getTotalDeductionForUser()['graces'];?>
                <br>
-               Amount deducted per day:
+               Amount deducted per day: Rs: 121
              </div>
            </article>
          </div>

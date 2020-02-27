@@ -6,6 +6,7 @@
     include 'config/classes/grace.class.php';
     include 'config/classes/attendance.class.php';
     include 'config/classes/deduction.class.php';
+    include 'config/classes/admin.class.php';
     include 'config/timezone.php';
 
 ?>

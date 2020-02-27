@@ -72,9 +72,24 @@ public function getDayRecord($day){
   return $dayRecord;
 }
 public function getMonthlyDeduction(){
-  for ($i = 1; $i <=26; $i++){
+  for ($i = 1; $i <=date("d ") ; $i++){
     echo $this->getDayRecord($i);
   }
+}
+public function getTotalDeductionForUser(){
+  $database = new DB;
+  $handle = $database->connectToDb();
+  $day = date("d");
+  $query = "SELECT * FROM grace WHERE uid='{$this->uid}' AND month='{$this->month}' AND grace_override='False' AND day<'{$day}'";
+  if ($result = $handle->query($query)){
+    $graces = $result->num_rows;
+    $totalDays = date("d")-1;
+    $totalDaysBillable = $totalDays - $graces;
+    $deductionData = [];
+    $deductionData['deduction'] = $totalDaysBillable*121;
+    $deductionData['graces'] = $graces;
+    return $deductionData;
+}
 }
 }
 ?>
