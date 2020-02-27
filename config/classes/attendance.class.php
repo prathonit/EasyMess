@@ -8,6 +8,14 @@ class Attendance{
     $this->hour = date("H");
     $this->minute = date("i");
   }
+  public function getMessOfUser(){
+    $database = new DB;
+    $handle = $database->connectToDb();
+    $query = "SELECT mess FROM members WHERE uid='{$this->uid}'";
+    if ($result = $handle->query($query)){
+      return $result->fetch_array(MYSQLI_ASSOC)['mess'];
+    }
+  }
   public function checkIfGraceApplied(){
     $database = new DB;
     $handle = $database->connectToDb();
@@ -54,7 +62,7 @@ class Attendance{
       if (!$this->checkIfMealTaken()){
         $database = new DB;
         $handle = $database->connectToDb();
-        $query = "INSERT INTO attendance (uid, month, day, meal, time) VALUES ('{$this->uid}','{$this->month}', '{$this->day}', '{$this->getMeal()}', '{$this->time}')";
+        $query = "INSERT INTO attendance (uid, month, day, meal, time, mess) VALUES ('{$this->uid}','{$this->month}', '{$this->day}', '{$this->getMeal()}', '{$this->time}'),'{$this->getMessOfUser()}'";
         if ($result = $handle->query($query)){
           return True;
         }

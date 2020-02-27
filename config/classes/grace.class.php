@@ -6,7 +6,7 @@ class Grace {
     $this->handle = $this->database->connectToDb();
   }
   public function getMessOfUser(){
-    $handle = $this->handle;
+    $handle = $this>handle;
     $query = "SELECT mess FROM members WHERE uid='{$this->uid}'";
     if ($result = $handle->query($query)){
       return $result->fetch_array(MYSQLI_ASSOC)['mess'];

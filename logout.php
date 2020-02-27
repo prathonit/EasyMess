@@ -1,5 +1,17 @@
 <?php
 session_start();
+if (isset($_SESSION['adminuid'])){
+  $redirect = True;
+}
+else{
+  $redirect =False;
+}
 session_destroy();
-header("Location:index.php");
+if ($redirect){
+  header("Location:admin.php");
+}
+else{
+  header("Location:index.php");
+}
+
 ?>

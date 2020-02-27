@@ -44,7 +44,7 @@ include 'config/dependencies.php';
             <table class="table is-striped" style="width:100%;">
               <thead>
                 <th>Uid</th>
-                <th>Requested on </th>
+                <th>Grace id</th>
                 <th>Action</th>
               </thead>
               <tbody>
@@ -94,9 +94,11 @@ include 'config/dependencies.php';
         <div class="field">
           <label for="reason"><b>Reason for overriding the grace</b></label>
           <div class="control">
-            <textarea class="textarea" name="reason" placeholder="Briefly describe the reason for overriding the grace" rows="4" cols="80"></textarea>
+            <textarea class="textarea" name="reason" placeholder="Briefly describe the reason for overriding the grace" rows="3" cols="80" required></textarea>
           </div>
         </div>
+        <i>A mail will be sent to the student and SMC</i>
+
     </section>
     <footer class="modal-card-foot">
       <button class="button is-success" type="submit">Override</button>
