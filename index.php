@@ -25,7 +25,6 @@
                     <i class="fas fa-envelope"></i>
                   </span>
                   <input class="input" type="text" name="uid" value="" required>
-
                 </div>
                 <div class="control">
                   <button class="button is-static">@hyderabad.bits-pilani.ac.in</button>

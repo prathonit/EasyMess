@@ -24,7 +24,7 @@ include 'config/dependencies.php';
             <table class="table is-striped" style="width:100%;">
               <thead>
                 <th>Uid</th>
-                <th>Requested on </th>
+                <th>Grace id </th>
                 <th>Action</th>
               </thead>
               <tbody>
@@ -78,25 +78,44 @@ include 'config/dependencies.php';
       <button class="delete" onclick="closeModal()" aria-label="close"></button>
     </header>
     <section class="modal-card-body">
-      <!-- Content ... -->
+      <form class="" action="graceOverride.php" method="post">
+        <div class="field">
+          <label for="uid"><b>Uid</b></label>
+          <div class="control">
+            <input type="text" name="uid" id="uids" class="button is-static" value="">
+          </div>
+        </div>
+        <div class="field">
+          <label for="gids"><b>Grace Id</b></label>
+          <div class="control">
+            <input type="text" name="gids" id="gids" class="button is-static" value="">
+          </div>
+        </div>
+        <div class="field">
+          <label for="reason"><b>Reason for overriding the grace</b></label>
+          <div class="control">
+            <textarea class="textarea" name="reason" placeholder="Briefly describe the reason for overriding the grace" rows="4" cols="80"></textarea>
+          </div>
+        </div>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success">Override</button>
-
-
+      <button class="button is-success" type="submit">Override</button>
+      </form>
       <button class="button" onclick="closeModal()">Cancel</button>
     </footer>
   </div>
 </div>
-
-
 </section>
 
 </body>
 <script type="text/javascript">
-function showModal(){
+function showModal(uid,graceId){
+
+
+  document.getElementById('uids').setAttribute("value",uid);
+  document.getElementById('gids').setAttribute("value",graceId);
   document.getElementById('modal').classList = "modal is-active";
-  
+
 }
 function closeModal(){
   document.getElementById('modal').classList = "modal";

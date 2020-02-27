@@ -80,12 +80,14 @@ class Grace {
       echo "<b>Total no of Graces : " . $noOfGraces . "</b><br>";
       while ($graceData = $result->fetch_array()){
         $dataUid = $graceData['uid'];
+        $dataGraceid = $graceData['grace_id'];
         $dataRequest_date = $graceData['request_date'];
+        $function = "showModal('$dataUid','$dataGraceid')";
         $data = "";
         $data = $data . "<tr>";
         $data = $data . "<td>" . $dataUid . "</td>";
-        $data = $data . "<td>" . $dataRequest_date  . "</td>";
-        $data = $data . "<td>" . "<button class='button is-primary' uid='$dataUid request-date='$dataRequest_date  onclick='showModal()''>Override</button>" . "</td>";
+        $data = $data . "<td>" . $dataGraceid  . "</td>";
+        $data = $data . "<td>" . "<button class='button is-primary'  onclick=$function>Override</button>" . "</td>";
         echo $data;
       }
     }
