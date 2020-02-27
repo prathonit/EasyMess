@@ -11,7 +11,7 @@ $day = date("d",strtotime($date));
 $request_date = date("Y-m-d-H-i");
 $grace = new Grace($_SESSION['uid']);
 if ($grace->checkGraceEligibility($_SESSION['uid'], $month, $day, $request_date)){
-  if ($grace->checkGraceValidity($date,$request_date)){
+  if ($grace->checkGraceValidity($date)){
     $grace->addGrace($_SESSION['uid'], $month, $day, $request_date);
   }else{
     die("Grace invalid");

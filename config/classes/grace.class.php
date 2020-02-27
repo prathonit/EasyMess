@@ -5,6 +5,13 @@ class Grace {
     $this->database = new DB;
     $this->handle = $this->database->connectToDb();
   }
+  public function getMessOfUser(){
+    $handle = $this->handle;
+    $query = "SELECT mess FROM members WHERE uid='{$this->uid}'";
+    if ($result = $handle->query($query)){
+      return $result->fetch_array(MYSQLI_ASSOC)['mess'];
+    }
+  }
   public function getNoOfAllowedGraces($month){
     $handle = $this->handle;
     $query="SELECT * FROM gracelimit WHERE month='{$month}' LIMIT 1";
@@ -27,8 +34,8 @@ class Grace {
   }
   public function addGrace($uid, $month, $day, $request_date){
     $handle = $this->handle;
-    $query = "INSERT INTO grace (uid, month, day, request_date) VALUES('{$uid}',
-    '{$month}', '$day', '$request_date')";
+    $query = "INSERT INTO grace (uid, month, day, request_date, mess) VALUES('{$uid}',
+    '{$month}', '{$day}', '{$request_date}', ({$this->getMessOfUser()}))";
     if ($handle->query($query)){
       return True;
     }
@@ -58,13 +65,30 @@ class Grace {
     }
     return $graceEligibility;
   }
-  public function checkGraceValidity($date, $request_date){
+  public function checkGraceValidity($date){
     $valid = True;
-    $request_date = date("d-m", strtotime($request_date));
-    $grace_date = date("d-m", strtotime("$date"));
-    if ($grace_date <= $request_date){
-      $valid =False;
+    $grace_date = date("d-m", strtotime($date));
+    if ($grace_date < date("d-m")){
+      $valid = False;
     }return $valid;
+  }
+  public function admingetListOfAllGraces($day,$mess){
+    $handle = $this->handle;
+    $query = "SELECT * FROM grace WHERE mess='{$mess}' AND day='{$day}'";
+    if ($result=$handle->query($query)){
+      $noOfGraces = $result->num_rows;
+      echo "<b>Total no of Graces : " . $noOfGraces . "</b><br>";
+      while ($graceData = $result->fetch_array()){
+        $dataUid = $graceData['uid'];
+        $dataRequest_date = $graceData['request_date'];
+        $data = "";
+        $data = $data . "<tr>";
+        $data = $data . "<td>" . $dataUid . "</td>";
+        $data = $data . "<td>" . $dataRequest_date  . "</td>";
+        $data = $data . "<td>" . "<button class='button is-primary' uid='$dataUid request-date='$dataRequest_date  onclick='showModal()''>Override</button>" . "</td>";
+        echo $data;
+      }
+    }
   }
 }
 

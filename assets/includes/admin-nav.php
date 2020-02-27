@@ -19,13 +19,10 @@
   <div class="navbar-item">
     <div class="buttons">
       <a class="button is-primary" href="adminhome.php">
-        <strong>Scanner</strong>
+        <strong>Upcoming Graces</strong>
       </a>
       <a class="button is-light" href="adminaccounts.php">
-        <strong>Deductions</strong>
-      </a>
-      <a class="button is-light" href="admingrace.php">
-        <strong>Grace</strong>
+        <strong>Total deductions</strong>
       </a>
       <a class="button is-light" href="logout.php">
         <i class="fas fa-power-off"></i>&nbsp;Logout

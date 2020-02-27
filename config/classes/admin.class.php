@@ -13,6 +13,12 @@ class Admin{
   public function loginAdmin(){
     session_start();
     $_SESSION['adminuid'] = $this->adminuid;
+    if ($this->adminuid == "mess1"){
+      $_SESSION['mess'] = 1;
+    }
+    elseif($this->adminuid == "mess2"){
+      $_SESSION['mess'] = 2;
+    }
   }
 }
 ?>
