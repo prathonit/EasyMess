@@ -7,7 +7,7 @@ public function __construct($uid){
 public function checkIfGraceApplied($day){
   $database = new DB;
   $handle = $database->connectToDb();
-  $query = "SELECT * FROM grace WHERE uid='{$this->uid}' AND month='{$this->month}' AND day='{$day}'";
+  $query = "SELECT * FROM grace WHERE uid='{$this->uid}' AND grace_override=0 AND  month='{$this->month}' AND day='{$day}'";
   if ($result = $handle->query($query)){
     if ($result->num_rows > 0){
       return True;

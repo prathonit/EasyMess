@@ -7,6 +7,7 @@
     include 'config/classes/attendance.class.php';
     include 'config/classes/deduction.class.php';
     include 'config/classes/admin.class.php';
+    include 'config/classes/mail.class.php';
     include 'config/timezone.php';
 
 ?>

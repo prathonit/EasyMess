@@ -43,7 +43,7 @@ include 'config/dependencies.php';
                 <td>Day</td>
                 <td>Graces</td>
                 <td>Footfall</td>
-                <td>Amount payable</td>
+                <td>Amount payable (in Rs)</td>
               </thead>
               <tbody>
                 <?php

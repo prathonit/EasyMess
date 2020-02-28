@@ -6,7 +6,7 @@ class Grace {
     $this->handle = $this->database->connectToDb();
   }
   public function getMessOfUser(){
-    $handle = $this>handle;
+    $handle = $this->handle;
     $query = "SELECT mess FROM members WHERE uid='{$this->uid}'";
     if ($result = $handle->query($query)){
       return $result->fetch_array(MYSQLI_ASSOC)['mess'];
@@ -74,7 +74,7 @@ class Grace {
   }
   public function admingetListOfAllGraces($day,$mess){
     $handle = $this->handle;
-    $query = "SELECT * FROM grace WHERE mess='{$mess}' AND day='{$day}'";
+    $query = "SELECT * FROM grace WHERE mess='{$mess}' AND day='{$day}' AND grace_override=0";
     if ($result=$handle->query($query)){
       $noOfGraces = $result->num_rows;
       echo "<b>Total no of Graces : " . $noOfGraces . "</b><br>";
@@ -90,6 +90,16 @@ class Grace {
         $data = $data . "<td>" . "<button class='button is-primary'  onclick=$function>Override</button>" . "</td>";
         echo $data;
       }
+    }
+  }
+  public function setGraceOverride($gid, $adminuid, $comment){
+    $handle = $this->handle;
+    $query = "UPDATE grace SET grace_override=1,comment='{$comment}' WHERE grace_id='{$gid}'";
+    if ($result = $handle->query($query)){
+      return True;
+    }
+    else{
+      return False;
     }
   }
 }

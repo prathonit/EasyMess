@@ -19,7 +19,7 @@ class Attendance{
   public function checkIfGraceApplied(){
     $database = new DB;
     $handle = $database->connectToDb();
-    $query = "SELECT * FROM grace WHERE uid='{$this->uid}' AND month='{$this->month}' AND day='{$this->day}'";
+    $query = "SELECT * FROM grace WHERE uid='{$this->uid}' AND grace_override=0 AND month='{$this->month}' AND day='{$this->day}'";
     if ($result = $handle->query($query)){
       if ($result->num_rows > 0){
         return True;
@@ -62,17 +62,19 @@ class Attendance{
       if (!$this->checkIfMealTaken()){
         $database = new DB;
         $handle = $database->connectToDb();
-        $query = "INSERT INTO attendance (uid, month, day, meal, time, mess) VALUES ('{$this->uid}','{$this->month}', '{$this->day}', '{$this->getMeal()}', '{$this->time}'),'{$this->getMessOfUser()}'";
+        $query = "INSERT INTO attendance (uid, month, day, meal, time, mess) VALUES ('{$this->uid}','{$this->month}', '{$this->day}', '{$this->getMeal()}', '{$this->time}','{$this->getMessOfUser()}')";
         if ($result = $handle->query($query)){
           return True;
         }
         else{
-          return False;
         }
+      }
+      else{
+
       }
     }
     else{
-
+      
     }
   }
   public function __destruct(){
