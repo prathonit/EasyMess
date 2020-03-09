@@ -18,10 +18,10 @@
 <div class="navbar-end">
   <div class="navbar-item">
     <div class="buttons">
-      <a class="button is-light" href="adminbarcode.php">
+      <a class="button is-primary" href="adminbarcode.php">
         <strong>Barcode</strong>
       </a>
-      <a class="button is-primary" href="adminhome.php">
+      <a class="button is-light" href="adminhome.php">
         <strong>Upcoming Graces</strong>
       </a>
       <a class="button is-light" href="adminaccounts.php">

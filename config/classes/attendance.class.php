@@ -58,24 +58,18 @@ class Attendance{
   }
 
   public function addAttendance(){
-    if (!$this->checkIfGraceApplied()){
-      if (!$this->checkIfMealTaken()){
+        $mess = $this->getMessOfUser();
         $database = new DB;
         $handle = $database->connectToDb();
-        $query = "INSERT INTO attendance (uid, month, day, meal, time, mess) VALUES ('{$this->uid}','{$this->month}', '{$this->day}', '{$this->getMeal()}', '{$this->time}','{$this->getMessOfUser()}')";
+        $query = "SELECT * FROM ticket WHERE adminuid='{$mess}'";
+        $result = $handle->query($query);
+        $row = $result->fetch_array();
+        $recent_ticket = $row['ticket'];
+        $user_ticket = $recent_ticket + 1;
+        $query = "INSERT INTO attendance (uid, month, day, meal, time, mess, ticket) VALUES ('{$this->uid}','{$this->month}', '{$this->day}', '{$this->getMeal()}', '{$this->time}','{$this->getMessOfUser()}', '{$user_ticket}')";
         if ($result = $handle->query($query)){
-          return True;
+          return $user_ticket;
         }
-        else{
-        }
-      }
-      else{
-
-      }
-    }
-    else{
-      
-    }
   }
   public function __destruct(){
     $this->addAttendance();

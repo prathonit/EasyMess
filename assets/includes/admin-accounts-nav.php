@@ -18,6 +18,9 @@
 <div class="navbar-end">
   <div class="navbar-item">
     <div class="buttons">
+      <a class="button is-light" href="adminbarcode.php">
+        <strong>Barcode</strong>
+      </a>
       <a class="button is-light" href="adminhome.php">
         <strong>Upcoming Graces</strong>
       </a>

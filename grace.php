@@ -22,12 +22,11 @@ include 'assets/includes/grace-nav.php';
 <h1 class="title">Mess Grace</h1>
 <center>
 <div class="box" style="padding:40px;">
-<form class="" action="grace-apply.php" method="post">
  <fieldset>
    <div class="fields">
      <label for="">Select a date</label>
      <div class="control" style="width:50%;">
-       <input type="date" name="grace-date" class="input" required>
+       <input type="date" name="grace-date" class="input" id="gracedate" required>
      </div>
    </div><br>
    <div class="field">
@@ -47,12 +46,12 @@ include 'assets/includes/grace-nav.php';
    <div class="fields">
      <div class="control">
        <center>
-       <input type="submit" name="" value="Apply" class="button is-primary is-pulled-right">
+       <input type="submit" name="" value="Apply" class="button is-primary is-pulled-right" onclick="applyGrace()">
         </center>
      </div>
    </div>
  </fieldset>
-</form>
+
 
 </div>
 </div>
@@ -70,12 +69,8 @@ include 'assets/includes/grace-nav.php';
           <th>Date</th>
           <th>Request Date</th>
         </thead>
-        <tbody>
-          <?php
-          $grace = new Grace($_SESSION['uid']);
-          $graceAll = $grace->getAllGraces();
-          echo $graceAll;
-          ?>
+        <tbody id="graces-list">
+
         </tbody>
       </table>
     </div>
@@ -85,9 +80,38 @@ include 'assets/includes/grace-nav.php';
 </section>
 </body>
 <script type="text/javascript">
-
+var i = 0;
+var uid = "<?php
+              echo $_SESSION['uid'];
+          ?>";
+  function applyGrace(){
+    var gracedate = document.getElementById("gracedate").value;
+    xhttps = new XMLHttpRequest();
+    xhttps.onreadystatechange = function(){
+      if (this.status ==200 && this.readyState ==4){
+        alert(this.responseText);
+      }
+    }
+    xhttps.open("GET","ajaxify/grace/grace_apply_request.php?u=" + window.uid+"&gracedate="+gracedate);
+    xhttps.send();
+  }
   function showGraces(){
-    document.getElementById('graces').style.display = 'block';
+    if (i%2==0){
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200){
+          document.getElementById('graces-list').innerHTML = this.responseText;
+        }
+      }
+      xhttp.open("GET", "ajaxify/grace/grace_list_request.php?u=" + window.uid,true);
+      xhttp.send();
+      document.getElementById('graces').style.display = 'block';
+      i++;
+    }
+    else{
+      document.getElementById('graces').style.display = 'none';
+      i++;
+    }
   }
 </script>
 </html>

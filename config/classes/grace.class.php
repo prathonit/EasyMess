@@ -36,12 +36,7 @@ class Grace {
     $handle = $this->handle;
     $query = "INSERT INTO grace (uid, month, day, request_date, mess) VALUES('{$uid}',
     '{$month}', '{$day}', '{$request_date}', ({$this->getMessOfUser()}))";
-    if ($handle->query($query)){
-      return True;
-    }
-    else{
-      return False;
-    }
+    return $handle->query($query);
   }
   public function getAllGraces(){
     $handle = $this->handle;
@@ -60,7 +55,7 @@ class Grace {
     $status = "";
     $gracesLeft = $this->getNoOfOnlineGracesLeft($uid, $month);
     if ($gracesLeft<=0){
-      $graceEligibility =False;
+      $graceEligibility = False;
       $status = $status . "You have consumed all your online graces";
     }
     return $graceEligibility;
