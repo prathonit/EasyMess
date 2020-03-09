@@ -42,12 +42,16 @@ class Attendance{
     else if ($this->hour >= 19 && $this->hour <= 22){
       return "Dinner";
     }
+    else{
+      return 0;
+    }
   }
   public function checkIfMealTaken(){
     $database = new DB;
     $handle = $database->connectToDb();
+
     $query = "SELECT * FROM attendance WHERE uid='{$this->uid}' AND month='{$this->month}' AND day='{$this->day}' AND meal='{$this->getMeal()}' ";
-    if ($result = $handle->query($query)){
+    if ($result = $handle->query($query) && $this->getMeal()!='None'){
       if ($result->num_rows > 0){
         return True;
       }
@@ -66,6 +70,8 @@ class Attendance{
         $row = $result->fetch_array();
         $recent_ticket = $row['ticket'];
         $user_ticket = $recent_ticket + 1;
+        $query = "UPDATE ticket SET ticket = '{$user_ticket}'";
+        $handle->query($query);
         $query = "INSERT INTO attendance (uid, month, day, meal, time, mess, ticket) VALUES ('{$this->uid}','{$this->month}', '{$this->day}', '{$this->getMeal()}', '{$this->time}','{$this->getMessOfUser()}', '{$user_ticket}')";
         if ($result = $handle->query($query)){
           return $user_ticket;

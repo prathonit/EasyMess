@@ -30,7 +30,7 @@ include 'config/dependencies.php';
      <div id="scanner-container" >
 
      </div>
-     <h1 class="title">Welcome, scan the barcode in the mess to continue ..</h1>
+     <h1 class="title">Welcome <?php echo $_SESSION['uid']; ?>, scan the barcode in the mess to continue ..</h1>
      <button type="button" id="btn" class="button is-primary" name="ticket-button" style="padding:50px;height:50%;width:50%;"><h1 class="title">|||||||<br>Scan</h1></button>
 
      <script src="assets/js/quagga.js"></script>
@@ -121,11 +121,11 @@ include 'config/dependencies.php';
                  xhttp = new XMLHttpRequest();
                  xhttp.onreadystatechange = function(){
                    if (this.status ==200 && this.readyState ==4){
-                     alert(this.responseText);
-
+                       document.getElementById('ticket-no').innerHTML = xhttp.responseText;
+                       document.getElementById('modal').classList = "modal is-active";
                    }
                  };
-                 xhttp.open("GET","ajaxify/attendance.php?user=" + '<?php echo $_SESSION['uid']; ?>' + "&code="+ result.codeResult.code, true);
+                 xhttp.open("GET","ajaxify/attendance.php?user=" + '<?php echo $_SESSION['uid']; ?>' + "&code="+ result.codeResult.code + "&t="+Math.random(), true);
                  xhttp.send();
              });
          }

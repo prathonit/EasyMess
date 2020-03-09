@@ -1,6 +1,19 @@
 <!-- Written on 25-02-2020 by Prathmesh Srivastava https://github.com/prathonit -->
+<?php
+  include 'config/methods/sanitize.method.php';
+  if (isset($_GET['action'])){
+    $action = sanitize_input($_GET['action']);
+  }
+ ?>
 <!DOCTYPE html>
 <html>
+  <script type="text/javascript">
+
+    var action = '<?php echo $action ; ?>';
+    if (action =='invalid'){
+      alert("Invalid credentials");
+    }
+  </script>
   <?php
       include 'assets/includes/head.php';
    ?>

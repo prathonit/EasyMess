@@ -14,25 +14,24 @@ if (($result = $handle->query($query))&& $result->num_rows>0){
   $row = $result->fetch_array();
   $mess = $row['adminuid'];
   $attendance = new Attendance($uid);
-  if ($attendance->getMessOfUser() == $mess){
+  if ($attendance->getMessOfUser() == $mess[4]){
     if (!$attendance->checkIfGraceApplied()){
       if (!$attendance->checkIfMealTaken()){
         $meal = $attendance->getMeal();
-        // $ticket = $attendance->addAttendance();
-        // echo $ticket;
-        echo '0';
+        $ticket = $attendance->addAttendance();
+        echo "69";  
       }
       else{
-        return False;
+        echo "3";
       }
     }else{
-      return False;
+      echo "4";
     }
   }else{
-    return False;
+    echo "5";
   }
 }else{
-  return False;
+  echo "6";
 }
 
 ?>

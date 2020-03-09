@@ -7,6 +7,6 @@ if ($user->authenticateUser()){
 $user->loginUser();
 header("Location:home.php");
 }else{
-header("Location:index.php");
+header("Location:index.php?action=invalid");
 }
 ?>
