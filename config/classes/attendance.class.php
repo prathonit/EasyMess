@@ -51,13 +51,16 @@ class Attendance{
     $handle = $database->connectToDb();
 
     $query = "SELECT * FROM attendance WHERE uid='{$this->uid}' AND month='{$this->month}' AND day='{$this->day}' AND meal='{$this->getMeal()}' ";
-    if ($result = $handle->query($query) && $this->getMeal()!='None'){
+    if ($result = $handle->query($query) && $this->getMeal()!=0){
       if ($result->num_rows > 0){
         return True;
       }
       else{
         return False;
       }
+    }
+    else{
+      return False;
     }
   }
 
@@ -66,19 +69,23 @@ class Attendance{
         $database = new DB;
         $handle = $database->connectToDb();
         $query = "SELECT * FROM ticket WHERE adminuid='{$mess}'";
-        $result = $handle->query($query);
-        $row = $result->fetch_array();
-        $recent_ticket = $row['ticket'];
-        $user_ticket = $recent_ticket + 1;
-        $query = "UPDATE ticket SET ticket = '{$user_ticket}'";
-        $handle->query($query);
-        $query = "INSERT INTO attendance (uid, month, day, meal, time, mess, ticket) VALUES ('{$this->uid}','{$this->month}', '{$this->day}', '{$this->getMeal()}', '{$this->time}','{$this->getMessOfUser()}', '{$user_ticket}')";
         if ($result = $handle->query($query)){
-          return $user_ticket;
+          $row = $result->fetch_array();
+          $recent_ticket = $row['ticket'];
+          $user_ticket = $recent_ticket + 1;
+          $query = "UPDATE ticket SET ticket = '{$user_ticket}'";
+          $handle->query($query);
+          $query = "INSERT INTO attendance (uid, month, day, meal, time, mess, ticket) VALUES ('{$this->uid}','{$this->month}', '{$this->day}', '{$this->getMeal()}', '{$this->time}','{$this->getMessOfUser()}', '{$user_ticket}')";
+          if ($result = $handle->query($query)){
+            return $user_ticket;
+          }
         }
+        else{
+          die('error101');
+        }
+
+
   }
-  public function __destruct(){
-    $this->addAttendance();
-  }
+
 }
  ?>

@@ -18,8 +18,8 @@ if (($result = $handle->query($query))&& $result->num_rows>0){
     if (!$attendance->checkIfGraceApplied()){
       if (!$attendance->checkIfMealTaken()){
         $meal = $attendance->getMeal();
-        $ticket = $attendance->addAttendance();
-        echo "69";  
+        echo $attendance->addAttendance();
+        echo "lol";
       }
       else{
         echo "3";
