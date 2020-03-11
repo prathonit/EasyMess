@@ -121,7 +121,8 @@ include 'config/dependencies.php';
                  xhttp = new XMLHttpRequest();
                  xhttp.onreadystatechange = function(){
                    if (this.status ==200 && this.readyState ==4){
-                       document.getElementById('ticket-no').innerHTML = xhttp.responseText;
+                       document.getElementById('ticket-content').innerHTML = xhttp.responseText;
+
                        document.getElementById('modal').classList = "modal is-active";
                    }
                  };
@@ -150,9 +151,8 @@ include 'config/dependencies.php';
          <p class="modal-card-title">Ticket</p>
          <button class="delete" onclick="hideModal()" aria-label="close"></button>
        </header>
-       <section class="modal-card-body">
-         <img src="assets/images/success.svg" height="100" width="100" alt=""><br>
-         <h1 class="title" id="ticket-no"></h1>
+       <section class="modal-card-body" id="ticket-content">
+
        </section>
        <footer class="modal-card-foot">
          <button class="button is-success" onclick="hideModal()" type="submit">Close</button>

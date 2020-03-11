@@ -18,20 +18,43 @@ if (($result = $handle->query($query))&& $result->num_rows>0){
     if (!$attendance->checkIfGraceApplied()){
       if (!$attendance->checkIfMealTaken()){
         $meal = $attendance->getMeal();
-        echo $attendance->addAttendance();
-        echo "lol";
+        $ticket_no = $attendance->addAttendance();
+        echo "
+        <img id ='status' src='assets/images/success.svg' height='100' width='100' alt=''><br>
+        <h1 class='title' id='ticket-no'>{$ticket_no}</h1>
+        ";
       }
       else{
-        echo "3";
+        echo "
+        <img id ='status' src='assets/images/failure.svg' height='100' width='100' alt=''><br>
+        <h1 class='title' id='ticket-no'>You have already taken the meal.</h1>
+        <br><br>
+        <i>For any queries reach out to the mess admin</i>
+        ";
       }
     }else{
-      echo "4";
+      echo "
+      <img id ='status' src='assets/images/failure.svg' height='100' width='100' alt=''><br>
+      <h1 class='title' id='ticket-no'>
+      A grace was applied for today.<br>
+      Do you want to override the grace?<br><br><br>
+      <button class='button is-danger'>Yes</button>&nbsp;
+      <button class='button is-primary'>No</button>
+      </h1>
+      <br><br>
+      <i>For any queries reach out to the mess admin</i>
+      ";
     }
   }else{
-    echo "5";
+    echo "
+    <img id ='status' src='assets/images/failure.svg' height='100' width='100' alt=''><br>
+    <h1 class='title' id='ticket-no'>Maybe you are in the wrong mess!</h1>
+    <br><br>
+    <i>For any queries reach out to the mess admin</i>
+    ";
   }
 }else{
-  echo "6";
+  echo "Error 6";
 }
 
 ?>

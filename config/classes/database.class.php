@@ -1,4 +1,3 @@
-<!-- Written on 25-02-2020 by Prathmesh Srivastava https://github.com/prathonit -->
 <?php
   class DB{
     public function connectToDb(){
