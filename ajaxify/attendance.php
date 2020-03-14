@@ -5,6 +5,7 @@ include '../config/classes/grace.class.php';
 include '../config/classes/user.class.php';
 include '../config/classes/database.class.php';
 
+
 $uid = $_REQUEST['user'];
 $code = $_REQUEST['code'];
 $database = new DB;
@@ -17,11 +18,12 @@ if (($result = $handle->query($query))&& $result->num_rows>0){
   if ($attendance->getMessOfUser() == $mess[4]){
     if (!$attendance->checkIfGraceApplied()){
       if (!$attendance->checkIfMealTaken()){
-        $meal = $attendance->getMeal();
-        $ticket_no = $attendance->addAttendance();
         echo "
-        <img id ='status' src='assets/images/success.svg' height='100' width='100' alt=''><br>
-        <h1 class='title' id='ticket-no'>{$ticket_no}</h1>
+        <img id ='status' src='assets/images/success.svg' height='100' width='100' alt=''
+        style = 'margin: 10px;'
+        ><br>
+        <center>
+        <h1 class='title' id='ticket-no'>Your ticket number is : {$attendance->addAttendance()}</h1>
         ";
       }
       else{

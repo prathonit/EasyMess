@@ -49,9 +49,8 @@ class Attendance{
   public function checkIfMealTaken(){
     $database = new DB;
     $handle = $database->connectToDb();
-
     $query = "SELECT * FROM attendance WHERE uid='{$this->uid}' AND month='{$this->month}' AND day='{$this->day}' AND meal='{$this->getMeal()}' ";
-    if ($result = $handle->query($query) && $this->getMeal()!=0){
+    if ($result = $handle->query($query)){
       if ($result->num_rows > 0){
         return True;
       }
@@ -68,24 +67,17 @@ class Attendance{
         $mess = $this->getMessOfUser();
         $database = new DB;
         $handle = $database->connectToDb();
-        $query = "SELECT * FROM ticket WHERE adminuid='{$mess}'";
+        $query = "SELECT * FROM ticket WHERE mess = '{$mess}'";
         if ($result = $handle->query($query)){
-          $row = $result->fetch_array();
+          $row = $result->fetch_array(MYSQLI_ASSOC);
           $recent_ticket = $row['ticket'];
           $user_ticket = $recent_ticket + 1;
-          $query = "UPDATE ticket SET ticket = '{$user_ticket}'";
+          $query = "UPDATE ticket SET ticket = '{$user_ticket}' WHERE mess = '{$mess}'";
           $handle->query($query);
-          $query = "INSERT INTO attendance (uid, month, day, meal, time, mess, ticket) VALUES ('{$this->uid}','{$this->month}', '{$this->day}', '{$this->getMeal()}', '{$this->time}','{$this->getMessOfUser()}', '{$user_ticket}')";
-          if ($result = $handle->query($query)){
-            return $user_ticket;
-          }
+          $query = "INSERT INTO attendance (uid, month, day, meal, `time`, mess, ticket) VALUES ('{$this->uid}','{$this->month}', '{$this->day}', '{$this->getMeal()}', '{$this->time}','{$this->getMessOfUser()}', '{$user_ticket}')";
+          $handle->query($query);
+          return $user_ticket;
         }
-        else{
-          die('error101');
-        }
-
-
   }
-
 }
  ?>
